@@ -15,7 +15,7 @@ public:
     explicit Doctor(QWidget *parent = nullptr);
     ~Doctor();
 
-    void setButtonText(QString text);
+    void setButtonText(QString time,QString name);
 
 private:
     void init();
@@ -27,9 +27,6 @@ signals:
 private:
     Ui::Doctor *ui;
 
-    // QWidget interface
-protected:
-    void resizeEvent(QResizeEvent *event);
 };
 
 #endif // DOCTOR_H

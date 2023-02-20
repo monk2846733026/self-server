@@ -60,13 +60,60 @@ void MmySql::init()
     m_db = QSqlDatabase::addDatabase("QMYSQL");
     m_db.setHostName("localhost");
     m_db.setPort(3306);
-//    m_db.setDatabaseName(BASEINFO);
     m_db.setUserName("root");
     m_db.setPassword("123456");
-
     bool ok = m_db.open();
     m_db.exec("SET NAMES 'UTF8'");
     qDebug()<<"is connect sql:"<<ok;
 
+    QList<QHash<QString,QString>> a = getClass2Data();
+    qDebug()<<a.size();
+
+    //CREATE SCHEMA `class` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
+    //创建数据库1.患者信息数据库 2.科室医生数据库 3.记录医院每日的信息数据库（待确定哪些数据应该每天保存）
+    if(!isHaveDatabase(BASEINFO))
+    {
+        //数据库1
+        QSqlQuery createDatabase;
+        QString str = QString("CREATE SCHEMA `base_information` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;");
+        bool iscreatedatabase = createDatabase.exec(str);
+        qDebug()<<"iscreatedatabase `base_information`:"<<iscreatedatabase;
+    }
+    if(!isHaveDatabase(CLASSINFO))
+    {
+        //数据库2
+        QSqlQuery createDatabase;
+        QString str = QString("CREATE SCHEMA `class` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;");
+        bool iscreatedatabase = createDatabase.exec(str);
+        qDebug()<<"iscreatedatabase class:"<<iscreatedatabase;
+    }
     m_hash.clear();
+}
+
+bool MmySql::isHaveDatabase(QString databasename)
+{
+    //判断数据库是否存在
+    QString str = QString("SELECT information_schema.SCHEMATA.SCHEMA_NAME FROM information_schema.SCHEMATA where SCHEMA_NAME='%1';").arg(databasename);
+    QSqlQuery result = m_db.exec(str);
+    int count = 0;
+    while(result.next())
+    {
+        count++;
+    }
+    qDebug()<<"count:"<<count;
+    return count>0?true:false;
+}
+
+bool MmySql::isHaveTable(QString databasename, QString tablename)
+{
+    //判断数据库中的一张表是否存在
+    QString str = QString("SELECT DISTINCT t.table_name, n.SCHEMA_NAME FROM information_schema.TABLES t, information_schema.SCHEMATA n WHERE t.table_name = '%1' AND n.SCHEMA_NAME = '%2';").arg(tablename).arg(databasename);
+    QSqlQuery result = m_db.exec(str);
+    int count = 0;
+    while(result.next())
+    {
+        count++;
+    }
+    qDebug()<<"count:"<<count;
+    return count>0?true:false;
 }

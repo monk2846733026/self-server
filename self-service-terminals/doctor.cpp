@@ -15,16 +15,14 @@ Doctor::~Doctor()
     delete ui;
 }
 
-void Doctor::setButtonText(QString text)
+void Doctor::setButtonText(QString time,QString name)
 {
-    ui->pushButton->setText(text);
+    ui->label_name->setText(name);
+    ui->label_time->setText(time);
 }
 
 void Doctor::init()
 {
-    ui->pushButton->move(0,0);
-    ui->pushButton->resize(this->size());
-
     connect(ui->pushButton,SIGNAL(pressed()),this,SLOT(pushbuttonPressed()));
 }
 
@@ -33,7 +31,3 @@ void Doctor::pushbuttonPressed()
     emit onDoctorPressed();
 }
 
-void Doctor::resizeEvent(QResizeEvent *event)
-{
-    ui->pushButton->resize(this->size());
-}

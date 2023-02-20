@@ -30,8 +30,15 @@ void Widget::onPage3()
 {
     ui->stackedWidget->setCurrentIndex(3);
     ui->countdown->restart();
+}
+
+void Widget::onSubmit()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->countdown->restart();
 
     user_id = ui->lineEdit_id->text();
+    user_name = ui->lineEdit_name->text();
     m_sql->createTable(BASEINFO,user_id);
     m_sql->insertData(BASEINFO,user_id,"姓名",ui->lineEdit_name->text());
 
@@ -85,6 +92,9 @@ void Widget::onPage12()
 {
     ui->stackedWidget->setCurrentIndex(12);
     ui->countdown->restart();
+
+    int index = m_sql->getAllData(CLASSINFO,m_doc.value("tablename")).size()-2;
+    m_sql->insertData(CLASSINFO,m_doc.value("tablename"),QString::number(index),user_name);
 }
 
 void Widget::onTab0()
@@ -114,6 +124,42 @@ void Widget::onTab2_0()
 void Widget::onTab2_1()
 {
     ui->tabWidget_2->setCurrentIndex(1);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_0()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(0);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_1()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(1);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_2()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(2);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_3()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(3);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_4()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(4);
+    ui->countdown->restart();
+}
+void Widget::onTab2_1_5()
+{
+    ui->tabWidget_2->setCurrentIndex(1);
+    ui->stackedWidget_2->setCurrentIndex(5);
     ui->countdown->restart();
 }
 

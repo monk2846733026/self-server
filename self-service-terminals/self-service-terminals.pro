@@ -17,7 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     allslots.cpp \
+    classinit.cpp \
     countdown.cpp \
+    docdata.cpp \
     doctor.cpp \
     main.cpp \
     mmysql.cpp \
