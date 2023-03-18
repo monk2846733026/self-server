@@ -41,15 +41,14 @@ void Widget::onSubmit()
     user_name = ui->lineEdit_name->text();
     m_sql->createTable(BASEINFO,user_id);
     m_sql->insertData(BASEINFO,user_id,"姓名",ui->lineEdit_name->text());
-
     int year = QDate::currentDate().toString("yyyy-MM-dd").left(4).toInt();
     int age = year - user_id.left(10).right(4).toInt();
     m_sql->insertData(BASEINFO,user_id,"年龄",QString::number(age));
-
     int sex = user_id.right(2).left(1).toInt();
     m_sql->insertData(BASEINFO,user_id,"性别",QString("%1").arg(sex%2>0?"女":"男"));
-
     m_sql->insertData(BASEINFO,user_id,"手机号",ui->lineEdit_phone->text());
+    m_sql->createtablepay(BASEINFO,user_id);
+
 }
 
 void Widget::onPage4()
@@ -67,6 +66,13 @@ void Widget::onPage6()
 {
     ui->stackedWidget->setCurrentIndex(6);
     ui->countdown->restart();
+    tablepayshow();
+}
+
+void Widget::onPage7()
+{
+    ui->stackedWidget->setCurrentIndex(7);
+    ui->countdown->restart();
 }
 void Widget::onPage8()
 {
@@ -80,8 +86,12 @@ void Widget::onPage9()
 }
 void Widget::onPage10()
 {
-    ui->stackedWidget->setCurrentIndex(10);
-    ui->countdown->restart();
+    bool ok = m_sql->backregisterid(BASEINFO,user_id);
+    if(ok)
+    {
+        ui->stackedWidget->setCurrentIndex(10);
+        ui->countdown->restart();
+    }
 }
 void Widget::onPage11()
 {
@@ -90,11 +100,29 @@ void Widget::onPage11()
 }
 void Widget::onPage12()
 {
-    ui->stackedWidget->setCurrentIndex(12);
-    ui->countdown->restart();
 
     int index = m_sql->getAllData(CLASSINFO,m_doc.value("tablename")).size()-2;
-    m_sql->insertData(CLASSINFO,m_doc.value("tablename"),QString::number(index),user_name);
+    bool ok = m_sql->insertData(CLASSINFO,m_doc.value("tablename"),QString::number(index),user_name);
+    if(ok)
+    {
+        RegisterId data;
+        data.id = QString::number(index);
+        data.classname = m_doc.value("所属科室");
+        data.doctorname = m_doc.value("姓名");
+        bool ko = m_sql->createRegisterTable(BASEINFO,user_id+"register",data);
+        if(ko)
+        {
+            ui->stackedWidget->setCurrentIndex(12);
+            ui->countdown->restart();
+            Pay paydata;
+            paydata.project="挂号";
+            paydata.size=1;
+            paydata.unit="5/人";
+            paydata.total="5";
+            m_sql->createtablepay(BASEINFO,user_id+"pay");
+            m_sql->inserttablepay(BASEINFO,user_id+"pay",paydata);
+        }
+    }
 }
 
 void Widget::onTab0()

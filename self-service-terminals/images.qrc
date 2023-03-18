@@ -1,23 +1,29 @@
 <RCC>
     <qresource prefix="/">
+        <file>images/1.png</file>
+        <file>images/2.png</file>
+        <file>images/3.png</file>
+        <file>images/4.png</file>
+        <file>images/5.png</file>
+        <file>images/6.png</file>
         <file>images/back.png</file>
-        <file>images/ok.png</file>
-        <file>images/pay.png</file>
+        <file>images/backregister.png</file>
+        <file>images/bldy.png</file>
+        <file>images/click.png</file>
+        <file>images/feedback.png</file>
         <file>images/hospital.png</file>
         <file>images/hs.png</file>
-        <file>images/backregister.png</file>
-        <file>images/click.png</file>
         <file>images/hs-idcakr.png</file>
         <file>images/hs-introduce.png</file>
         <file>images/idcard.png</file>
         <file>images/mypay.png</file>
         <file>images/name.png</file>
+        <file>images/ok.png</file>
         <file>images/paint.png</file>
+        <file>images/pay.png</file>
         <file>images/phone.png</file>
         <file>images/register.png</file>
         <file>images/success.png</file>
         <file>images/time.png</file>
-        <file>images/feedback.png</file>
-        <file>images/bldy.png</file>
     </qresource>
 </RCC>

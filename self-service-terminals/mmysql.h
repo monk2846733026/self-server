@@ -17,9 +17,18 @@ public:
     bool createTable(QString databasename, QString id);
     bool insertData(QString databasename, QString id, QString key, QString value);
 
+    bool createRegisterTable(QString databasename, QString id , RegisterId data);
+    bool createtablepay(QString databasename, QString tablename);
+    bool inserttablepay(QString databasename, QString tablename, Pay data);
+    QList<Pay> getallpay(QString databasename, QString tablename);
+
+    bool backregisterid(QString databasename, QString tablename);
+
+
     QHash<QString,QString> getAllData(QString databasename,QString id);
 
-    //获取神经康复科室所有医生数据
+    //获取所有医生数据
+    //神经康复科室
     QList<QHash<QString,QString>> getClass1Data();
     //骨伤康复
     QList<QHash<QString,QString>> getClass2Data();

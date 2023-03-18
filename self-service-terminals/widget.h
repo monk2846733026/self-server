@@ -7,6 +7,7 @@
 #include <QTime>
 #include "data.h"
 #include "doctor.h"
+#include "qprintermanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -23,6 +24,7 @@ public:
 public:
     void init();
     void startslots();
+    void tablepayshow();
 
     void getclass1data();
     void getclass2data();
@@ -41,6 +43,7 @@ private slots:
     void onPage4();
     void onPage5();
     void onPage6();
+    void onPage7();
     void onPage8();
     void onPage9();
     void onPage10();

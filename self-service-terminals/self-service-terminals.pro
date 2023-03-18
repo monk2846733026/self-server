@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,6 +23,8 @@ SOURCES += \
     doctor.cpp \
     main.cpp \
     mmysql.cpp \
+    pay.cpp \
+    qprintermanager.cpp \
     sectime.cpp \
     widget.cpp
 
@@ -31,6 +33,7 @@ HEADERS += \
     data.h \
     doctor.h \
     mmysql.h \
+    qprintermanager.h \
     sectime.h \
     widget.h
 
@@ -44,4 +47,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    images.qrc
