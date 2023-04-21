@@ -101,5 +101,7 @@ void QPrinterManager::getPreviewData(QPrinter *printer)
     QTextDocument document;
     document.setHtml(m_data);
     document.print(printer);
+
+
 }
 

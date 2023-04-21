@@ -25,7 +25,7 @@ void Widget::tablepayshow()
     //获取表格行数
     int rowNum = ui->tableWidget->rowCount();
     //打印表格的标题
-    QString title = QString("Student Information");
+    QString title = QString("缴费明细清单");
     //columnList为各列名
     QStringList columnList;
     //dataLists为各行数据
@@ -50,7 +50,7 @@ void Widget::tablepayshow()
     QPrinterManager PM;
     PM.dataBegin();
     PM.insertTitle(title);
-    PM.insertTitle2(tr("次级标题"));
+//    PM.insertTitle2(tr("次级标题"));
     PM.tableBegin(columnList);
     for(int row=0;row<rowNum;row++)
     {
