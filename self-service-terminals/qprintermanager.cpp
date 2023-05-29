@@ -11,6 +11,16 @@ QPrinterManager::QPrinterManager(QObject *parent) : QObject(parent), m_charSet("
     out.setString(&m_data);
 }
 
+QPrinterManager::~QPrinterManager()
+{
+
+}
+
+void QPrinterManager::setCharSet(const QString &set)
+{
+    m_charSet = set;
+}
+
 void QPrinterManager::dataBegin()
 {
     out << QString("<html>")
@@ -18,6 +28,11 @@ void QPrinterManager::dataBegin()
         << QString("<meta content=\"text/html; charset=%1\">").arg(m_charSet)
         << QString("<meta name=Generator content=\"Microsoft Word 12 (filtered)\">")
         << QString("</head>");
+}
+
+void QPrinterManager::dataEnd()
+{
+    out << QString("</html>");
 }
 
 void QPrinterManager::insertTitle(const QString &title)
@@ -33,6 +48,11 @@ void QPrinterManager::insertTitle2(const QString &title2)
     out << QString("<p style='text-align:left'><span style='font-size:16.0pt;font-family:宋体'><b>-%1</b></span></p>\n")
            .arg(title2);
 }
+
+void QPrinterManager::insertSeperator()
+{
+    out << QString("<br>\n");
+}
 void QPrinterManager::tableBegin(const QStringList &head)
 {
     out << QString("<div align='center' style='width:650px;margin-left:-70px;margin-top:-100px'>")
@@ -45,6 +65,11 @@ void QPrinterManager::tableBegin(const QStringList &head)
                .arg(head.at(i));
     }
     out << "</tr></thead>\n";
+}
+
+void QPrinterManager::tableEnd()
+{
+    out << QString("</table></div>\n");
 }
 
 void QPrinterManager::insert2TableRow(const QStringList &rowData)

@@ -1,6 +1,7 @@
 ﻿#include "countdown.h"
 
-CountDown::CountDown(QWidget *parent):m_timer(nullptr)
+CountDown::CountDown(QWidget *parent)
+  : m_timer(nullptr)
   , count (300)
 {
     count = 300;

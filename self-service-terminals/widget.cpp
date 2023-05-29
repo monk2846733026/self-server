@@ -27,6 +27,8 @@ void Widget::init()
     //数据库类
     m_sql = MmySql::getinstance();
 
+//    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->showMaximized();
     this->setWindowIcon(QIcon(":/images/hs.png"));
     this->setWindowTitle("康复中心自助服务软件");
 

@@ -35,7 +35,7 @@ bool MmySql::insertData(QString databasename, QString id, QString key, QString v
     QString str = QString("INSERT INTO `%1`.`%2` (`key`, `value`) VALUES ('%3', '%4');").arg(databasename).arg(id).arg(key.data()).arg(value.data());
     //codeChange(str);
     bool isinsert = insert.exec(str);
-//    qDebug()<<"inster:"<<isinsert<<"--"<<key<<value;
+    qDebug()<<"inster:"<<isinsert<<databasename<<id<<"--"<<key<<value;
     return isinsert;
 }
 
@@ -60,9 +60,11 @@ bool MmySql::createRegisterTable(QString databasename, QString id, RegisterId da
     {
         count++;
     }
-    qDebug()<<"aaaa"<<count;
+    qDebug()<<"---------用户挂号表数量："<<count;
     if(count>0)
     {
+        str = QString("");
+        QSqlQuery isexit = m_db.exec(str);
         QMessageBox::information(nullptr,"提示","已经挂过该医生号了",QMessageBox::Ok);
         return false;
     }

@@ -26,6 +26,7 @@ SOURCES += \
     pay.cpp \
     qprintermanager.cpp \
     sectime.cpp \
+    sql.cpp \
     widget.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     mmysql.h \
     qprintermanager.h \
     sectime.h \
+    sql.h \
     widget.h
 
 FORMS += \

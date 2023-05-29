@@ -1,18 +1,24 @@
 ﻿#ifndef COUNTDOWN_H
 #define COUNTDOWN_H
 
+//#include <QWidget>
 #include <QObject>
 #include <QTimer>
 #include <QLabel>
 
+/*!
+ * \brief The CountDown class
+ * 右上角倒计时
+ */
 class CountDown : public QLabel
 {
     Q_OBJECT
 public:
-    CountDown(QWidget *parent);
+    CountDown(QWidget *parent = nullptr);
+    ~CountDown();
+
     void start();
     void restart();
-    ~CountDown();
 
 signals:
     void counttimeout();

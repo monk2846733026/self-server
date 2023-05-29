@@ -19,10 +19,12 @@ public:
 
 private:
     void init();
-private slots:
-    void pushbuttonPressed();
+
 signals:
     void onDoctorPressed();
+
+private slots:
+    void pushbuttonPressed();
 
 private:
     Ui::Doctor *ui;

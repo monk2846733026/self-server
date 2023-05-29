@@ -12,19 +12,20 @@ class QPrinterManager : public QObject
     Q_OBJECT
 public:
     explicit QPrinterManager(QObject *parent = nullptr);
-    ~QPrinterManager(){}
-    void setCharSet(const QString &set = QString("utf-8")){ m_charSet = set; }
+    ~QPrinterManager();
+
+    void setCharSet(const QString &set = QString("utf-8"));
     void dataBegin();
-    void dataEnd(){ out << QString("</html>"); }
+    void dataEnd();
     // 添加主标题（两行：第一行居中显示文字，第二行居右显示时间）
     void insertTitle(const QString &title);
     // 添加次级标题
     void insertTitle2(const QString &title2);
     // 空出一行
-    void insertSeperator(){ out << QString("<br>\n"); }
+    void insertSeperator();
     // 不支持嵌套TABLE
     void tableBegin(const QStringList &head);
-    void tableEnd(){ out << QString("</table></div>\n"); }
+    void tableEnd();
     void insert2TableRow(const QStringList &rowData);
     // 带预览
     void printWithPreview();

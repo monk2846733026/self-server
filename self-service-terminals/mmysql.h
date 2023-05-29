@@ -14,9 +14,11 @@ public:
     static MmySql* getinstance();
 
     /*基础信息*/
+    //创建表, 数据库名称、表名称
     bool createTable(QString databasename, QString id);
+    //插入表数据，数据库名称、表名称、插入的数据，key,vavlue
     bool insertData(QString databasename, QString id, QString key, QString value);
-
+    //创建用户挂号表
     bool createRegisterTable(QString databasename, QString id , RegisterId data);
     bool createtablepay(QString databasename, QString tablename);
     bool inserttablepay(QString databasename, QString tablename, Pay data);
